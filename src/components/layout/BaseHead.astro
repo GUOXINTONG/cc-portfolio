@@ -1,5 +1,6 @@
 ---
 import '@/styles/global.css';
+import JsonLd from './JsonLd.astro';
 
 interface Props {
   title: string;
@@ -16,7 +17,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const {
   title,
   description,
-  image = '/og-image.png',
+  image = '/og-image.svg',
   type = 'website',
   publishDate,
   modifiedDate,
@@ -30,19 +31,25 @@ const ogImage = new URL(image, Astro.site);
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#fafaf9" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0c0a09" media="(prefers-color-scheme: dark)" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="canonical" href={canonicalURL} />
+<link rel="sitemap" href="/sitemap-index.xml" />
 
 <title>{fullTitle}</title>
 <meta name="title" content={fullTitle} />
 <meta name="description" content={description} />
 <meta name="author" content="Terry Guo" />
+<meta name="robots" content="index, follow" />
 
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content={siteTitle} />
 
 <meta property="twitter:card" content="summary_large_image" />
@@ -62,6 +69,16 @@ const ogImage = new URL(image, Astro.site);
     </>
   )
 }
+
+<JsonLd
+  type={type === 'article' ? 'article' : Astro.url.pathname === '/' ? 'person' : 'website'}
+  title={title}
+  description={description}
+  publishDate={publishDate}
+  modifiedDate={modifiedDate}
+  url={canonicalURL.toString()}
+  image={ogImage.toString()}
+/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -92,7 +92,26 @@ Blog posts include giscus for comments. Configuration requires:
 
 ### Google Analytics
 
-Loaded via `@astrojs/partytown` to run in web worker. Only loads in production. Measurement ID configured in `Analytics.astro`.
+Loaded via `@astrojs/partytown` to run in web worker. Only loads in production.
+
+**Configuration:**
+- Set `PUBLIC_GA_ID` environment variable with your Google Analytics Measurement ID (e.g., `G-XXXXXXXXXX`)
+- The Analytics component checks for this variable before loading the script
+
+### Environment Variables
+
+Copy `.env.example` to `.env` and configure:
+
+```bash
+PUBLIC_GA_ID=G-XXXXXXXXXX  # Google Analytics Measurement ID (optional)
+```
+
+## Performance Features
+
+- **Prefetching**: Links use `data-astro-prefetch` for hover-based prefetching (configured in `astro.config.mjs`)
+- **Partytown**: Google Analytics runs in web worker to avoid blocking main thread
+- **Image optimization**: Configured for GitHub user content remote images
+- **CSS code splitting**: Enabled in Vite build config
 
 ## Design Principles
 

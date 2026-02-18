@@ -15,7 +15,7 @@ const readingTime = getReadingTime(content);
 ---
 
 <article class="group">
-  <a href={`/blog/${slug}`} class="block">
+  <a href={`/blog/${slug}`} class="block" data-astro-prefetch>
     <div class="flex flex-col gap-2">
       <div class="flex items-center gap-2 text-sm text-secondary">
         <time datetime={pubDate.toISOString()}>

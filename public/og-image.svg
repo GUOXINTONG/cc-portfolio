@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#fafaf9"/>
+
+  <text x="100" y="280" font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="700" fill="#1c1917">
+    Terry Guo
+  </text>
+
+  <text x="100" y="360" font-family="Inter, system-ui, sans-serif" font-size="32" font-weight="400" fill="#57534e">
+    Large Language Model Algorithm Engineer
+  </text>
+
+  <text x="100" y="420" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="400" fill="#78716c">
+    Exploring LLM applications in code generation and knowledge retrieval
+  </text>
+
+  <rect x="100" y="480" width="60" height="4" fill="#57534e" rx="2"/>
+</svg>

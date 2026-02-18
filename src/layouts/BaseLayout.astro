@@ -2,6 +2,7 @@
 import BaseHead from '@/components/layout/BaseHead.astro';
 import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
+import Analytics from '@/components/content/Analytics.astro';
 
 interface Props {
   title: string;
@@ -28,6 +29,7 @@ const { title, description, image, type, publishDate, modifiedDate, tags } = Ast
       modifiedDate={modifiedDate}
       tags={tags}
     />
+    <Analytics />
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

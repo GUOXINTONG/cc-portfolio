@@ -1,0 +1,72 @@
+---
+interface Props {
+  type?: 'website' | 'article' | 'person';
+  title?: string;
+  description?: string;
+  publishDate?: Date;
+  modifiedDate?: Date;
+  url?: string;
+  image?: string;
+}
+
+const { type = 'website', title, description, publishDate, modifiedDate, url, image } = Astro.props;
+
+const siteUrl = Astro.site?.toString() || 'https://cc-portfolio.vercel.app';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Terry Guo',
+  jobTitle: 'Large Language Model Algorithm Engineer',
+  url: siteUrl,
+  email: 'terryguo0616@gmail.com',
+  sameAs: [
+    'https://github.com/GUOXINTONG',
+  ],
+  description: 'Large Language Model Algorithm Engineer specializing in AI-powered applications.',
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Terry Guo',
+  url: siteUrl,
+  description: 'Personal portfolio and blog of Terry Guo, a Large Language Model Algorithm Engineer.',
+  author: {
+    '@type': 'Person',
+    name: 'Terry Guo',
+  },
+};
+
+const articleSchema = title && publishDate ? {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: description,
+  url: url || siteUrl,
+  image: image ? new URL(image, siteUrl).toString() : undefined,
+  datePublished: publishDate.toISOString(),
+  dateModified: modifiedDate?.toISOString() || publishDate.toISOString(),
+  author: {
+    '@type': 'Person',
+    name: 'Terry Guo',
+    url: siteUrl,
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Terry Guo',
+    url: siteUrl,
+  },
+} : null;
+
+let schema;
+if (type === 'person') {
+  schema = personSchema;
+} else if (type === 'article' && articleSchema) {
+  schema = articleSchema;
+} else {
+  schema = websiteSchema;
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

@@ -21,6 +21,7 @@ const pathname = Astro.url.pathname;
       {navLinks.map((link) => (
         <a
           href={link.href}
+          data-astro-prefetch
           class:list={[
             'transition-colors hover:text-primary',
             pathname === link.href || pathname.startsWith(`${link.href}/`)
@@ -71,6 +72,7 @@ const pathname = Astro.url.pathname;
       {navLinks.map((link) => (
         <a
           href={link.href}
+          data-astro-prefetch
           class:list={[
             'text-sm font-medium transition-colors hover:text-primary',
             pathname === link.href || pathname.startsWith(`${link.href}/`)
