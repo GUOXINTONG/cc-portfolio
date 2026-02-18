@@ -1,0 +1,8 @@
+{
+  "name": "cc-portfolio",
+  "description": "This personal portfolio website built with Astro, Tailwind CSS, and modern web technologies. Features dark mode, responsive design, and blog functionality.",
+  "github": "https://github.com/GUOXINTONG/cc-portfolio",
+  "url": "https://cc-portfolio.vercel.app",
+  "tags": ["Astro", "Tailwind CSS", "TypeScript"],
+  "featured": true
+}

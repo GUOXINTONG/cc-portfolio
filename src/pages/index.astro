@@ -1,0 +1,210 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogCard from '@/components/content/BlogCard.astro';
+import { formatDateShort } from '@/utils/formatDate';
+
+const title = 'Terry Guo';
+const description = 'Large Language Model Algorithm Engineer. Exploring LLM applications in code generation and knowledge retrieval.';
+
+const posts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const latestPosts = posts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:py-32">
+    <div class="max-w-2xl">
+      <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+        Terry Guo
+      </h1>
+      <p class="mt-4 text-xl text-primary">
+        Large Language Model Algorithm Engineer
+      </p>
+      <p class="mt-6 text-lg text-secondary leading-relaxed">
+        I specialize in building AI-powered applications with Large Language Models.
+        My work focuses on code generation, RAG systems, and transforming cutting-edge
+        AI research into practical solutions.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-4">
+        <a
+          href="/projects"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-primary/90"
+        >
+          View Projects
+        </a>
+        <a
+          href="/about"
+          class="inline-flex items-center justify-center rounded-md border border-border bg-background px-6 py-3 text-sm font-medium transition-colors hover:bg-muted"
+        >
+          About Me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-border py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="text-2xl font-semibold">Featured Projects</h2>
+      <p class="mt-2 text-secondary">Selected work from my GitHub repositories</p>
+
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="group rounded-lg border border-border bg-background p-6 transition-colors hover:border-primary/50">
+          <h3 class="text-lg font-semibold">code_rag_gen</h3>
+          <p class="mt-2 text-sm text-secondary">
+            RAG-based code generation system exploring LLM capabilities for automated programming.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">Python</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">LLM</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">RAG</span>
+          </div>
+          <a
+            href="https://github.com/GUOXINTONG/code_rag_gen"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+          >
+            View on GitHub
+            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </article>
+
+        <article class="group rounded-lg border border-border bg-background p-6 transition-colors hover:border-primary/50">
+          <h3 class="text-lg font-semibold">MLE Practice</h3>
+          <p class="mt-2 text-sm text-secondary">
+            Machine Learning Engineering practice projects covering MLOps and production ML systems.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">Python</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">ML</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">MLOps</span>
+          </div>
+          <a
+            href="https://github.com/GUOXINTONG/MLE23-24"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+          >
+            View on GitHub
+            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </article>
+
+        <article class="group rounded-lg border border-border bg-background p-6 transition-colors hover:border-primary/50">
+          <h3 class="text-lg font-semibold">Personal Portfolio</h3>
+          <p class="mt-2 text-sm text-secondary">
+            This website - built with Astro, Tailwind CSS, and modern web technologies.
+          </p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">Astro</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">Tailwind</span>
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">TypeScript</span>
+          </div>
+          <a
+            href="https://github.com/GUOXINTONG/cc-portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+          >
+            View on GitHub
+            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {
+    latestPosts.length > 0 && (
+      <section class="border-t border-border py-16">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-2xl font-semibold">Latest Posts</h2>
+              <p class="mt-2 text-secondary">Thoughts on AI, engineering, and technology</p>
+            </div>
+            <a
+              href="/blog"
+              class="hidden text-sm font-medium text-primary hover:underline sm:inline-flex"
+            >
+              View all posts
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+
+          <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {latestPosts.map((post) => (
+              <article class="group flex flex-col">
+                <a href={`/blog/${post.slug}`} class="flex-1">
+                  <div class="text-sm text-secondary">
+                    <time datetime={post.data.pubDate.toISOString()}>
+                      {formatDateShort(post.data.pubDate)}
+                    </time>
+                  </div>
+                  <h3 class="mt-2 text-lg font-semibold group-hover:text-primary transition-colors">
+                    {post.data.title}
+                  </h3>
+                  <p class="mt-2 text-sm text-secondary line-clamp-2">
+                    {post.data.description}
+                  </p>
+                </a>
+                {post.data.tags.length > 0 && (
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    {post.data.tags.slice(0, 3).map((tag) => (
+                      <span class="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-xs">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <div class="mt-8 sm:hidden">
+            <a
+              href="/blog"
+              class="inline-flex items-center text-sm font-medium text-primary hover:underline"
+            >
+              View all posts
+              <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="border-t border-border py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <h2 class="text-2xl font-semibold">Get in Touch</h2>
+      <p class="mt-2 text-secondary">
+        Interested in collaborating or have a question? Feel free to reach out.
+      </p>
+      <a
+        href="mailto:terryguo0616@gmail.com"
+        class="mt-6 inline-flex items-center text-primary hover:underline"
+      >
+        terryguo0616@gmail.com
+        <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

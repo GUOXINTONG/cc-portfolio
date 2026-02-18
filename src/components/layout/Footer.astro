@@ -1,0 +1,29 @@
+---
+const currentYear = new Date().getFullYear();
+
+const socialLinks = [
+  { href: 'https://github.com/GUOXINTONG', label: 'GitHub' },
+  { href: 'mailto:terryguo0616@gmail.com', label: 'Email' },
+];
+---
+
+<footer class="w-full border-t border-border py-6 md:py-0">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:px-6 md:h-14 md:flex-row">
+    <p class="text-sm text-secondary">
+      © {currentYear} Terry Guo. All rights reserved.
+    </p>
+
+    <div class="flex items-center space-x-4">
+      {socialLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm text-secondary transition-colors hover:text-foreground"
+          target={link.href.startsWith('http') ? '_blank' : undefined}
+          rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,47 @@
+---
+import { formatDateShort, getReadingTime } from '@/utils/formatDate';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  slug: string;
+  content: string;
+  tags?: string[];
+}
+
+const { title, description, pubDate, slug, content, tags = [] } = Astro.props;
+const readingTime = getReadingTime(content);
+---
+
+<article class="group">
+  <a href={`/blog/${slug}`} class="block">
+    <div class="flex flex-col gap-2">
+      <div class="flex items-center gap-2 text-sm text-secondary">
+        <time datetime={pubDate.toISOString()}>
+          {formatDateShort(pubDate)}
+        </time>
+        <span>·</span>
+        <span>{readingTime} min read</span>
+      </div>
+
+      <h3 class="text-xl font-semibold group-hover:text-primary transition-colors">
+        {title}
+      </h3>
+
+      <p class="text-secondary line-clamp-2">
+        {description}
+      </p>
+
+      {tags.length > 0 && (
+        <div class="mt-2 flex flex-wrap gap-2">
+          {tags.map((tag) => (
+            <span class="inline-flex items-center rounded-full bg-muted px-2.5 py-0.5 text-xs font-medium">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  </a>
+</article>

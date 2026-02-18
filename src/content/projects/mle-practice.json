@@ -1,0 +1,7 @@
+{
+  "name": "MLE Practice 23-24",
+  "description": "Machine Learning Engineering practice projects covering MLOps, production ML systems, and best practices for deploying ML models at scale.",
+  "github": "https://github.com/GUOXINTONG/MLE23-24",
+  "tags": ["Python", "ML", "MLOps", "Docker"],
+  "featured": true
+}

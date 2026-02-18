@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProjectCard from '@/components/content/ProjectCard.astro';
+
+const title = 'Projects';
+const description = 'A collection of my projects in Large Language Models, Machine Learning Engineering, and web development.';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects.filter(p => p.data.featured);
+const otherProjects = allProjects.filter(p => !p.data.featured);
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-24">
+    <div class="max-w-2xl">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Projects</h1>
+      <p class="mt-4 text-lg text-secondary">
+        A selection of my work in AI/ML, code generation, and web development.
+      </p>
+    </div>
+
+    {featuredProjects.length > 0 && (
+      <section class="mt-12">
+        <h2 class="text-xl font-semibold">Featured</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <ProjectCard
+              name={project.data.name}
+              description={project.data.description}
+              github={project.data.github}
+              url={project.data.url}
+              tags={project.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    {otherProjects.length > 0 && (
+      <section class="mt-16">
+        <h2 class="text-xl font-semibold">Other Projects</h2>
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {otherProjects.map((project) => (
+            <ProjectCard
+              name={project.data.name}
+              description={project.data.description}
+              github={project.data.github}
+              url={project.data.url}
+              tags={project.data.tags}
+            />
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="mt-16 rounded-lg border border-border bg-muted/50 p-6">
+      <h2 class="text-lg font-semibold">More on GitHub</h2>
+      <p class="mt-2 text-secondary">
+        These are just the highlights. You can find more of my work on my GitHub profile.
+      </p>
+      <a
+        href="https://github.com/GUOXINTONG"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 inline-flex items-center text-sm font-medium text-primary hover:underline"
+      >
+        View GitHub Profile
+        <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+      </a>
+    </section>
+  </div>
+</BaseLayout>

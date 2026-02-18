@@ -1,0 +1,7 @@
+{
+  "name": "code_rag_gen",
+  "description": "RAG-based code generation system exploring LLM capabilities for automated programming. Implements retrieval-augmented generation to enhance code completion and generation tasks.",
+  "github": "https://github.com/GUOXINTONG/code_rag_gen",
+  "tags": ["Python", "LLM", "RAG", "Code Generation"],
+  "featured": true
+}
